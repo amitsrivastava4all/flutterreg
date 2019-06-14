@@ -25,6 +25,9 @@ void main(){
   for(int i = 1; i<=10; i++){
     print("I Loop is $i");
   }
+  var i = 100;
+ 
+  print(evenOdd);
 }
 final evenOdd = (num)=>num%2==0?"Even $num":"Odd $num";
 final cube = (num)=>num* num * num;
