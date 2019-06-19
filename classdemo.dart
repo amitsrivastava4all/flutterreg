@@ -67,6 +67,7 @@ void main(){
   //Customer ram = Customer.takeId(1001);
   //Customer ram = Customer.takeCustomerData(1001, "Ram",9999);
   Customer ram = new Customer(id, name,salary);
+  //ram._id = 10;
   ram.id = -1001;
   ram.salary = -9999;
   print(ram.msg);
