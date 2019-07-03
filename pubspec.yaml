@@ -1,5 +1,5 @@
-name: httptest
-description: A new Flutter application.
+name: musicplayer
+description: Music Player App
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -16,14 +16,17 @@ version: 1.0.0+1
 environment:
   sdk: ">=2.1.0 <3.0.0"
 
-dependencies:
+  dependencies:
   flutter:
     sdk: flutter
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   http: any
+  #audioplayer:
+
 
 dev_dependencies:
   flutter_test:
