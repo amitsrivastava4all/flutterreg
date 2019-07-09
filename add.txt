@@ -1,0 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+
+addRecordInDb() async {
+    Map<String, Object> map = <String, Object>{
+      'id': id,
+      'name': name,
+      'desc': desc,
+      'price': price,
+      'url': url
+    };
+    final DocumentReference documentReference =
+        Firestore.instance.document("prods/" + id.toString());
+    documentReference.setData(map).whenComplete(() {
+      print("Document Added");
+    }).catchError((e) => print(e));
+  }
