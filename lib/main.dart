@@ -1,86 +1,71 @@
 import 'package:flutter/material.dart';
 
-import './businesslogiccomponentblocpattern/App.dart';
-//import './scopedmodeleg/MyApp.dart';
+import './salarybloc.dart';
 
 void main() {
-  // runApp(MyApp(new CountDown()));
-  //runApp(GrandParent());
-  //runApp(A());
-  //runApp(MyApp(new CountDown()));
-  runApp(App());
+  runApp(MaterialApp(
+    home: SalaryCalc(),
+  ));
 }
 
-// One simple action: Increment
-/*enum Actions { Increment }
-
-// The reducer, which takes the previous count and increments it in response
-// to an Increment action.
-int counterReducer(int state, action) {
-  if (action == Actions.Increment) {
-    return state + 1;
-  }
-
-  return state;
-}
-
-void main() {
-  runApp(new FlutterReduxApp());
-}
-
-class FlutterReduxApp extends StatelessWidget {
-  // Create your store as a final variable in a base Widget. This works better
-  // with Hot Reload than creating it directly in the `build` function.
-  final store = new Store(counterReducer, initialState: 0);
-
+class SalaryCalc extends StatelessWidget {
+  SalaryBloc bloc = new SalaryBloc();
+  SalaryOpr salaryOpr = new SalaryOpr();
+  double salary;
   @override
   Widget build(BuildContext context) {
-    final title = 'Flutter Redux Demo';
-
-    return new MaterialApp(
-      theme: new ThemeData.dark(),
-      title: title,
-      home: new StoreProvider(
-        // Pass the store to the StoreProvider. Any ancestor `StoreConnector`
-        // Widgets will find and use this value as the `Store`.
-        store: store,
-        child: new Scaffold(
-          appBar: new AppBar(
-            title: new Text(title),
-          ),
-          body: new Center(
-            child: new Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                new Text(
-                  'You have pushed the button this many times:',
-                ),
-                new StoreConnector<int, String>(
-                  converter: (store) => store.state.toString(),
-                  builder: (context, count) => new Text(
-                        count,
-                        style: Theme.of(context).textTheme.display1,
-                      ),
-                )
-              ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('BLOC Example'),
+      ),
+      body: Container(
+        margin: EdgeInsets.all(20),
+        child: Column(
+          children: <Widget>[
+            TextField(
+              style: TextStyle(fontSize: 30),
+              onChanged: (str) {
+                print('OnChange call');
+                this.salary = double.parse(str);
+                print('Salary is $salary');
+              },
+              decoration: InputDecoration(hintText: 'Enter the Salary'),
             ),
-          ),
-          floatingActionButton: new StoreConnector<int, VoidCallback>(
-            converter: (store) {
-              // Return a `VoidCallback`, which is a fancy name for a function
-              // with no parameters. It only dispatches an Increment action.
-              return () => store.dispatch(Actions.Increment);
-            },
-            builder: (context, callback) => new FloatingActionButton(
-                  // Attach the `callback` to the `onPressed` attribute
-                  onPressed: callback,
-                  tooltip: 'Increment',
-                  child: new Icon(Icons.add),
-                ),
-          ),
+            RaisedButton(
+              onPressed: () {
+                salaryOpr.salary = salary;
+                print("Button Pressed ${salaryOpr.salary}");
+
+                bloc.salary_event_sink.add(salaryOpr);
+              },
+              child: Text(
+                'Compute',
+                style: TextStyle(fontSize: 30),
+              ),
+            ),
+            StreamBuilder(
+                stream: bloc.stream_salary,
+                initialData: 0,
+                builder: (context, snapshot) {
+                  print("Rec SnapShot :::: ${snapshot.data.hra}");
+                  return Column(
+                    children: <Widget>[
+                      Text(
+                          snapshot.data == null
+                              ? '0'
+                              : snapshot.data.hra.toString(),
+                          style: TextStyle(fontSize: 30)),
+                      Text(
+                          snapshot.data == null
+                              ? '0'
+                              : snapshot.data.da.toString(),
+                          style: TextStyle(fontSize: 30))
+                    ],
+                  );
+                }),
+          ],
         ),
       ),
     );
   }
 }
-*/
