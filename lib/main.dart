@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-
-//import './businesslogiccomponentblocpattern/App.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redux/redux.dart';
 import './ui/tabs.dart';
-void main() {
-  // runApp(MyApp(new CountDown()));
-  //runApp(GrandParent());
-  //runApp(A());
-  //runApp(MyApp(new CountDown()));
-  //runApp(App());
-  runApp(BottomTab());
-}
+
+//void main() {
+//  // runApp(MyApp(new CountDown()));
+//  //runApp(GrandParent());
+//  //runApp(A());
+//  //runApp(MyApp(new CountDown()));
+//  //runApp(App());
+//  //runApp(BottomTab());
+//}
 
 // One simple action: Increment
-/*enum Actions { Increment }
+enum Actions { Increment }
 
 // The reducer, which takes the previous count and increments it in response
 // to an Increment action.
@@ -83,4 +84,3 @@ class FlutterReduxApp extends StatelessWidget {
     );
   }
 }
-*/
